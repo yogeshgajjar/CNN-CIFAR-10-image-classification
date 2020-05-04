@@ -28,9 +28,9 @@ $ python3 CIFAR-10_CNN.py load
 
 The accuracy-epoch performance curve after running for 200 epochs 
 
-[Accuracy-Epoch](epoch-accuracy.png "curve")
+[AccuracyEpoch](epoch-accuracy.png "curve")
 
 The loss-epoch performance curve after running for 200 epochs
 
-[Accuracy-Loss](epoch-loss.png "curve") 
+[AccuracyLoss](epoch-loss.png "curve1") 
 
