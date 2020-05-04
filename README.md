@@ -34,3 +34,6 @@ The loss-epoch performance curve after running for 200 epochs
 
 [AccuracyLoss](epoch-loss.png "curve1") 
 
+## LeNet-5 Architecture using PyTorch 
+
+LeNet-5 is a basic architecture which performance moderately well on CIFAR-10 dataset. LeNet-5 has around ~395k learnable parameters. My model achieved 74% accuracy using PyTorch. This model is trained on Google Colab. 
