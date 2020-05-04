@@ -28,11 +28,11 @@ $ python3 CIFAR-10_CNN.py load
 
 The accuracy-epoch performance curve after running for 200 epochs 
 
-[AccuracyEpoch](epoch-accuracy.png "curve")
+[AccuracyEpoch](epoch_accuracy.png "curve")
 
 The loss-epoch performance curve after running for 200 epochs
 
-[AccuracyLoss](epoch-loss.png "curve1") 
+[AccuracyLoss](epoch_loss.png "curve1") 
 
 ## LeNet-5 Architecture using PyTorch 
 
