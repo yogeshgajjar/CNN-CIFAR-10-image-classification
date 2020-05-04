@@ -1,21 +1,3 @@
-# EE569 Homework Assignment #5 - Competition
-# Date: 3rd May 2020
-# Name: Yogesh Sanat Gajjar
-# USCID: 5476153636
-# Email: ygajjar@usc.edu
-
-# Version of OS - Ubuntu 18.04.3 LTS
-# IDE - Visual Studio Code 
-
-# ------------------------------------------------------------------------
-#     Problem 2. CIFAR-10 Competition 
-# ------------------------------------------------------------------------
-# STEPS TO RUN THE CODE 
-# 1.  Open terminal and change the directory where the source code files are downloaded. 
-# 2.  To train the model from scratch, use 'train' in the terminal before executing. If you want to load the pretrained model, use 'load' in the terminal before executing. 
-# 3.  Execute using the command python3 CIFAR-10_CNN.py train/load 
-
-
 import keras
 from keras.datasets import cifar10
 from keras.preprocessing.image import ImageDataGenerator
@@ -37,6 +19,14 @@ import sys
 
 
 def loadImages(labels):
+    """
+    Loads the CIFAR-10 dataset and normalizes the images. 
+
+    :returns Xtr: X_train with shape (50000 x 32 x 32 x 3)
+    :returns Xte: X_test with shape (10000 x 32 x 32 x 3)
+    :returns ytr: y_train labels with shape (50000 x 1) 
+    :returns yte: y-test labels with shape (10000 x 1) 
+    """
     (Xtr, ytr), (Xte, yte) = cifar10.load_data()
     ytr = keras.utils.to_categorical(ytr, labels)
     yte = keras.utils.to_categorical(yte, labels)
@@ -47,6 +37,10 @@ def loadImages(labels):
     return Xtr, Xte, ytr, yte 
 
 def myCNNArchitecture(weights=None):
+
+    """
+    The YGNet architecture is defined sequentially. 
+    """
     mycnn = Sequential()
 
     mycnn.add(Conv2D(96, (3, 3), padding = 'same', input_shape=(32, 32, 3)))
@@ -83,6 +77,10 @@ def myCNNArchitecture(weights=None):
     return mycnn
 
 def dataVisualize(hist, dropout, learningRate, key, weightDecay, batchSize):
+
+    """
+    Plots accuracy and loss performance curves. 
+    """
     xavier = 'False'
     plt.figure(1, figsize=(12,8))
     plt.plot(hist.history['accuracy'], color='red',linewidth=2)
@@ -107,6 +105,9 @@ def dataVisualize(hist, dropout, learningRate, key, weightDecay, batchSize):
     plt.show()
 
 def modelDetails(totalEpochs, batchSize, weightDecay, learningRate, key):
+    """
+    Provides the summary of the hyper-parameters used for training. 
+    """
     print("******* DETAILS OF THE MODEL *********\n")
     print("** Hyper - parameters detail **\n")
     print("Epochs : ", totalEpochs)
@@ -117,6 +118,10 @@ def modelDetails(totalEpochs, batchSize, weightDecay, learningRate, key):
    
 
 def saveModel(mycnn):
+    '''
+    Saves the model after training. 
+    '''
+
 
     newmodel = mycnn.to_json()
     with open("myModel.json", "w") as json_file:
@@ -126,7 +131,11 @@ def saveModel(mycnn):
     print("Saved model to disk")
 
 def loadModel(json_file='myModel.json', h5_model='myModel.h5'):
-    # load json and create model
+
+    """
+    Loads the model 
+    """
+
     json_file = open(json_file, 'r')
     myloaded_model = json_file.read()
     json_file.close()
@@ -137,6 +146,10 @@ def loadModel(json_file='myModel.json', h5_model='myModel.h5'):
     return finalModel
 
 def testPhase(final, Xte, yte, batchSize, optim):
+
+    """
+    Test on the test data and displays the final accuracy 
+    """
 
     final.compile(loss='categorical_crossentropy', optimizer=optim, metrics=['accuracy'])
     score = final.evaluate(Xte, yte, verbose=0)

@@ -1,3 +1,8 @@
+"""
+Copyright © 2020 Yogesh Gajjar. All rights reserved.
+"""
+
+
 import keras
 from keras.datasets import cifar10
 from keras.preprocessing.image import ImageDataGenerator
